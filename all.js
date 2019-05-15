@@ -302,6 +302,9 @@ window.console = window.console || function () {
 	for (var t, n, e = this + "";
 		(t = e.indexOf("../")) > 0;) {
 		if (1 === t || -1 === (n = e.lastIndexOf("/", t - 2))) return e.substring(t + 3);
+		if (n < 8) {
+			n = t - 1;
+		};
 		e = e.substring(0, n) + e.substring(t + 2)
 	}
 	return e
