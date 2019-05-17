@@ -6,6 +6,7 @@
 import net.jalbum.filters.auto.*;
 import se.datadosen.util.*;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 // Fixing variables written by v5.3.2 by mistake
 void cleanupProperties(folder) {
@@ -1202,11 +1203,15 @@ void initPage() {
 void getFooterLinks() {	
 	boolean first = true;
 	StringBuilder sb = new StringBuilder(2048);
+
+	sb.append("Last modified " + (new SimpleDateFormat("dd/MM/yyyy")).format(time));
+	first = false;
 	
 	if (showImageCount != void && showImageCount) {
 		//int i = thumbCount + folderImgCount;
 		//((level == 0)? totalAlbumImages : (thumbCount + folderImgCount));
 		if (totalImageCount > 0) {
+			if (!first) sb.append(sep);
 			sb.append(totalImageCount + " " + util.getText((totalImageCount > 1)? "images" : "image"));
 			first = false;
 		}
@@ -1318,7 +1323,11 @@ void updateImage(boolean allData) {
 	// Link to original or high-res
 	_link = (_category == Category.image && hiResPath != void && hiResPath != null)? 
 		hiResPath : ((originalPath != void && originalPath != null)? originalPath : "");
-		
+
+	// Link to converted video in slides folder
+	if (_category == Category.video && imagePath != void && imagePath != null)
+		_link = imagePath.replaceAll(".jpg$", ".mp4");
+	
 	// Image has original :: boolean
 	_original = (hiResPath == void || hiResPath == null) && (originalPath != void && originalPath != null);
 	
