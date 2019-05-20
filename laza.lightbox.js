@@ -378,7 +378,7 @@
 					
 					// Download button
 					
-					if (item[J.ORIGINAL] && !settings.hideDownload && 
+					if (!settings.hideDownload && 
 						(item[J.CATEGORY] === 'image' || settings.allowDownloadOthers)) {
 						el = $('<a>', {
 								'class': 	settings.buttonClass + ' icon-download',

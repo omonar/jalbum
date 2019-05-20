@@ -1074,6 +1074,14 @@ var Album = function($, options) {
 					
 					return p + o[J.ORIGINAL][J.PATH];
 				}
+
+				if (o[J.CATEGORY] === 'image') {
+					var p = getPath(o[J.PATHREF]);			
+					
+					p = settings.rootPath + '/s3/photos/' + p + '/' + o[J.NAME];
+					
+					return p;
+				}
 				
 				return null;
 			},
