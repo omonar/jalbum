@@ -1032,7 +1032,7 @@ void initPage() {
 			
 			// Index page 
 			
-			_title = util.cleanup(util.stripHTML((level == 0)? albumTitle : title));
+			_title = util.cleanup(util.stripHTML((level == 0)? albumTitle : title.replaceAll("_", " ")));
 			
 			_category = Category.folder;
 			
@@ -1204,7 +1204,7 @@ void getFooterLinks() {
 	boolean first = true;
 	StringBuilder sb = new StringBuilder(2048);
 
-	sb.append("Last modified " + (new SimpleDateFormat("dd/MM/yyyy")).format(time));
+	sb.append("Last updated on " + (new SimpleDateFormat("MMMM d, yyyy")).format(time));
 	first = false;
 	
 	if (showImageCount != void && showImageCount) {
@@ -1325,12 +1325,17 @@ void updateImage(boolean allData) {
 		hiResPath : ((originalPath != void && originalPath != null)? originalPath : "");
 
 	// Link to converted video in slides folder
-	if (_category == Category.video && imagePath != void && imagePath != null)
-		_link = imagePath.replaceAll(".jpg$", ".mp4");
+	// if (_category == Category.video && imagePath != void && imagePath != null)
+	//	_link = imagePath.replaceAll(".jpg$", ".mp4");
 	
 	// Image has original :: boolean
 	_original = (hiResPath == void || hiResPath == null) && (originalPath != void && originalPath != null);
-	
+
+	// Link to original images
+	if (_category == Category.image && imagePath != void && imagePath != null) {
+		_link = rootPath + "/s3/photos/" + relPath + imagePath.replace("slides/", "");
+		_original = true;
+	}
 	// file extension
 	_ext = util.getExt(imagePath);
 	if (util.isEmpty(_ext)) {
