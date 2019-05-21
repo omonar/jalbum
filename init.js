@@ -625,7 +625,7 @@ var JAFilter = Java.type("se.datadosen.jalbum.JAFilter"),
 						if ((ao = getPreviousFolder(folder)) != null) {
 							v = ao.getVars();
 							vars.put('previousFolderPath', '../' + v.get('closeupPath'));
-							vars.put('previousFolderTitle', ao.getTitle() || ao.getName());
+							vars.put('previousFolderTitle', ao.getTitle() || ao.getName().replaceAll('_', ' '));
 							vars.put('previousFolderThumbPath', '../' + v.get('thumbPath'));
 							s = encodeAsJava(ao.getWebName());
 							
@@ -644,7 +644,7 @@ var JAFilter = Java.type("se.datadosen.jalbum.JAFilter"),
 						if ((ao = getNextFolder(folder)) != null) {
 							v = ao.getVars();
 							vars.put('nextFolderPath', '../' + v.get('closeupPath'));
-							vars.put('nextFolderTitle', ao.getTitle() || ao.getName());
+							vars.put('nextFolderTitle', ao.getTitle() || ao.getName().replaceAll('_', ' '));
 							vars.put('nextFolderThumbPath', '../' + v.get('thumbPath'));
 							s = encodeAsJava(ao.getWebName());
 							
