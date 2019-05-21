@@ -1060,6 +1060,7 @@ void initPage() {
 					if (util.isEmpty(previousFolderTitle)) {
 						previousFolderTitle = ao.getName();
 					}
+					previousFolderTitle = previousFolderTitle.replaceAll("_", " ");
 					previousFolderThumbPath = "../" + (String)vars.get("thumbPath");
 					if ((ao = util.getLastImage(ao)) != null) {
 						if (util.makeSlides)
@@ -1081,6 +1082,7 @@ void initPage() {
 					if (util.isEmpty(nextFolderTitle)) {
 						nextFolderTitle = ao.getName();
 					}
+					nextFolderTitle = nextFolderTitle.replaceAll("_", " ");
 					nextFolderThumbPath = "../" + (String)vars.get("thumbPath");
 					if ((ao = util.getFirstImage(ao)) != null) {
 						if (util.makeSlides)
