@@ -364,6 +364,8 @@ var JAFilter = Java.type("se.datadosen.jalbum.JAFilter"),
 								s = s.replace(/\$\{resPath\}/g, resPath);
 								if (preFormat) {
 									s = preformatText(s);
+								} else {
+									s = s.replaceAll('_', ' ');
 								}
 								vars.put('thumbCaption', s);
 							}
@@ -460,7 +462,7 @@ var JAFilter = Java.type("se.datadosen.jalbum.JAFilter"),
 								
 								// Image caption
 								if (imageCaptionTemplate && (s = processTemplate(ao, imageCaptionTemplate))) {
-									vars.put('imageCaption', s);
+									vars.put('imageCaption', s.replaceAll('_', ' '));
 								}
 								
 								if (cat === Category.image) {
@@ -710,6 +712,8 @@ var JAFilter = Java.type("se.datadosen.jalbum.JAFilter"),
 						//s = s.replace(/\$\{resPath\}/g, resPath);
 						if (preFormat) {
 							s = preformatText(s);
+						} else {
+							s = s.replaceAll('_', ' ');
 						}
 						vars.put('folderTitle', s);
 					} else {
