@@ -378,7 +378,7 @@
 					
 					// Download button
 					
-					if (!settings.hideDownload && 
+					if ((album.getOriginalPath(item) !== null) && !settings.hideDownload && 
 						(item[J.CATEGORY] === 'image' || settings.allowDownloadOthers)) {
 						el = $('<a>', {
 								'class': 	settings.buttonClass + ' icon-download',
